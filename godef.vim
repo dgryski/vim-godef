@@ -7,8 +7,13 @@ endif
 function! GodefUnderCursor()
     let offs=line2byte(line('.'))+col('.')
     let out=system(g:godef_command . " -f=" . bufname("%") . " -o=" . offs)
-    split
-    lexpr out
+    if out =~ 'godef: no identifier found'
+        let out=substitute(out, '\n$', '', '')
+        echom out
+    else
+        split
+        lexpr out
+    end
 endfunction
 
 nnoremap <buffer> <localleader>d :call GodefUnderCursor()<cr>
