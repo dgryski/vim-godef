@@ -5,8 +5,12 @@ if !exists("g:godef_command")
 endif
 
 function! GodefUnderCursor()
-    let offs=line2byte(line('.'))+col('.')
-    let out=system(g:godef_command . " -f=" . bufname("%") . " -o=" . offs)
+    let offs=line2byte(line('.'))+col('.')-1
+    call Godef("-o=" . offs)
+endfunction
+
+function! Godef(arg)
+    let out=system(g:godef_command . " -f=" . bufname("%") . " " . a:arg)
     if out =~ 'godef: '
         let out=substitute(out, '\n$', '', '')
         echom out
@@ -17,3 +21,4 @@ function! GodefUnderCursor()
 endfunction
 
 nnoremap <buffer> <localleader>d :call GodefUnderCursor()<cr>
+command! -range -nargs=1 Godef :call Godef(<q-args>)
