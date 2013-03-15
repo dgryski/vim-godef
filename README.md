@@ -10,6 +10,7 @@ the definition of a symbol.  It can be installed with
 To install this plugin, copy 'godef.vim' to ~/.vim/plugins.
 
 Or, if you're using pathogen, 
+
    git clone https://github.com/dgryski/vim-godef ~/.vim/bundle/vim-godef
 
 This modules overrides the `gd` (go to local definition) command to open a new
