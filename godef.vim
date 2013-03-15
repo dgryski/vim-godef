@@ -7,7 +7,7 @@ endif
 function! GodefUnderCursor()
     let offs=line2byte(line('.'))+col('.')
     let out=system(g:godef_command . " -f=" . bufname("%") . " -o=" . offs)
-    if out =~ 'godef: no identifier found'
+    if out =~ 'godef: '
         let out=substitute(out, '\n$', '', '')
         echom out
     else
