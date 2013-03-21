@@ -4,6 +4,10 @@ if !exists("g:godef_command")
     let g:godef_command = "godef"
 endif
 
+if !exists("g:godef_split")
+    let g:godef_split = 1
+endif
+
 function! GodefUnderCursor()
     let offs=line2byte(line('.'))+col('.')-1
     call Godef("-o=" . offs)
@@ -15,7 +19,9 @@ function! Godef(arg)
         let out=substitute(out, '\n$', '', '')
         echom out
     else
-        split
+        if g:godef_split
+            split
+	endif
         lexpr out
     end
 endfunction
