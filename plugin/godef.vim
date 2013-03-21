@@ -21,7 +21,7 @@ function! Godef(arg)
     else
         if g:godef_split
             split
-	endif
+        endif
         lexpr out
     end
 endfunction

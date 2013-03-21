@@ -11,7 +11,7 @@ To install this plugin, copy 'godef.vim' to ~/.vim/plugins.
 
 Or, if you're using pathogen, 
 
-   git clone https://github.com/dgryski/vim-godef ~/.vim/bundle/vim-godef
+    git clone https://github.com/dgryski/vim-godef ~/.vim/bundle/vim-godef
 
 This modules overrides the `gd` (go to local definition) command to open a new
 window at the definition of the symbol under the cursor.
