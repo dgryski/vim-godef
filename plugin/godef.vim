@@ -26,5 +26,5 @@ function! Godef(arg)
     end
 endfunction
 
-nnoremap <buffer> gd :call GodefUnderCursor()<cr>
+autocmd FileType go nnoremap <buffer> gd :call GodefUnderCursor()<cr>
 command! -range -nargs=1 Godef :call Godef(<q-args>)
