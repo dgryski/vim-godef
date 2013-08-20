@@ -16,7 +16,20 @@ function! GodefUnderCursor()
 endfunction
 
 function! Godef(arg)
-    let out=system(g:godef_command . " -f=" . bufname("%") . " " . a:arg)
+
+    if &modified
+        " XXX not ideal, but I couldn't find a good way
+        "     to create a temporary buffer for use with
+        "     a filter
+        let filename=tempname()
+        echomsg filename
+        execute ":write " . filename
+    else
+        let filename=bufname("%")
+    endif
+
+    let out=system(g:godef_command . " -f=" . filename . " " . a:arg)
+
     if out =~ 'godef: '
         let out=substitute(out, '\n$', '', '')
         echom out
