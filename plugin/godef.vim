@@ -8,8 +8,6 @@ if !exists("g:godef_split")
     let g:godef_split = 1
 endif
 
-let g:godef_newtab = get(g:, 'godef_newtab', 0)
-
 function! GodefUnderCursor()
     let offs=line2byte(line('.'))+col('.')-1
     call Godef("-o=" . offs)
@@ -34,9 +32,9 @@ function! Godef(arg)
         let out=substitute(out, '\n$', '', '')
         echom out
     else
-        if g:godef_split
+        if g:godef_split == 1
             split
-        elseif g:godef_newtab
+        elseif g:godef_split == 2
             tabnew
         endif
         lexpr out

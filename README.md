@@ -16,7 +16,7 @@ Or, if you're using pathogen,
 This modules overrides the `gd` (go to local definition) command to open a new
 window at the definition of the symbol under the cursor.  Setting
 `g:godef_split` = 0 will reuse the current window instead.  If you would like
-to have it open in a tab instead, you can set `g:godef_newtab` = 1.
+to have it open in a tab instead, you can set `g:godef_split` = 2.
 
 It also adds a `:Godef ` which will work for global types, methods,
 constants, and variables in the current package.
