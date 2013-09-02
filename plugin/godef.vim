@@ -34,7 +34,7 @@ function! Godef(arg)
         let filename=bufname("%")
     endif
 
-    let out=system(g:godef_command . " -f=" . filename . " " . a:arg)
+    let out=system(g:godef_command . " -f=" . shellescape(filename) . " " . shellescape(a:arg))
 
     if out =~ 'godef: '
         let out=substitute(out, '\n$', '', '')
