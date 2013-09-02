@@ -9,7 +9,15 @@ if !exists("g:godef_split")
 endif
 
 function! GodefUnderCursor()
-    let offs=line2byte(line('.'))+col('.')-1
+    let pos = getpos(".")[1:2]
+    if &encoding == 'utf-8'
+        let offs = line2byte(pos[0]) + pos[1]
+    else
+        let c = pos[1]
+        let buf = line('.') == 1 ? "" : (join(getline(1, pos[0] - 1), "\n") . "\n")
+        let buf .= c == 1 ? "" : getline(pos[0])[:c-2]
+        let offs = len(iconv(buf, &encoding, "utf-8"))
+    endif
     call Godef("-o=" . offs)
 endfunction
 
@@ -26,7 +34,7 @@ function! Godef(arg)
         let filename=bufname("%")
     endif
 
-    let out=system(g:godef_command . " -f=" . filename . " " . a:arg)
+    let out=system(g:godef_command . " -f=" . shellescape(filename) . " " . shellescape(a:arg))
 
     if out =~ 'godef: '
         let out=substitute(out, '\n$', '', '')
