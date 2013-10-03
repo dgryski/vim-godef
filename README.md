@@ -7,7 +7,7 @@ the definition of a symbol.  It can be installed with
     go get -v code.google.com/p/rog-go/exp/cmd/godef
     go install -v code.google.com/p/rog-go/exp/cmd/godef
 
-To install this plugin, copy godef.vim to ~/.vim/plugins.
+To install this plugin, copy godef.vim to ~/.vim/plugin .
 
 Or, if you're using pathogen, 
 
