@@ -15,8 +15,18 @@ Or, if you're using pathogen,
 
 This modules overrides the `gd` (go to local definition) command to open a new
 window at the definition of the symbol under the cursor.  Setting
-`g:godef_split` = 0 will reuse the current window, and `g:godef_split` = 2 will
-open the definition in a new tab.
 
-It also adds a `:Godef ` which will work for global types, methods,
+    g:godef_split=0
+
+will reuse the current window, and
+
+    g:godef_split=2
+
+will open the definition in a new tab.
+
+If you want jumps to the same file to move your current cursor instead of splitting, use
+
+    g:godef_same_file_in_same_window=1
+
+This also adds a `:Godef ` which will work for global types, methods,
 constants, and variables in the current package.
