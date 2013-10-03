@@ -8,6 +8,11 @@ if !exists("g:godef_split")
     let g:godef_split = 1
 endif
 
+if !exists("g:godef_same_file_in_same_window")
+    let g:godef_same_file_in_same_window=0
+endif
+
+
 function! GodefUnderCursor()
     let pos = getpos(".")[1:2]
     if &encoding == 'utf-8'
@@ -39,6 +44,8 @@ function! Godef(arg)
     if out =~ 'godef: '
         let out=substitute(out, '\n$', '', '')
         echom out
+    elseif g:godef_same_file_in_same_window == 1 && (out) =~ expand('%:t')
+        lexpr out
     else
         if g:godef_split == 1
             split
