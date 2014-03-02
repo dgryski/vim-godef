@@ -47,7 +47,7 @@ function! Godef(arg)
     elseif g:godef_same_file_in_same_window == 1 && (out) =~ expand('%:t')
         lexpr out
     else
-        if out !~ '^'.filename
+        if out !~ '^'.bufname("%")
           if g:godef_split == 1
               split
           elseif g:godef_split == 2
