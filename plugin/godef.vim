@@ -16,35 +16,32 @@ endif
 function! GodefUnderCursor()
     let pos = getpos(".")[1:2]
     if &encoding == 'utf-8'
-        let offs = line2byte(pos[0]) + pos[1]
+        let offs = line2byte(pos[0]) + pos[1] - 2
     else
         let c = pos[1]
         let buf = line('.') == 1 ? "" : (join(getline(1, pos[0] - 1), "\n") . "\n")
         let buf .= c == 1 ? "" : getline(pos[0])[:c-2]
         let offs = len(iconv(buf, &encoding, "utf-8"))
     endif
-    call Godef("-o=" . offs)
+    silent call Godef("-o=" . offs)
 endfunction
 
 function! Godef(arg)
 
-    if &modified
-        " XXX not ideal, but I couldn't find a good way
-        "     to create a temporary buffer for use with
-        "     a filter
-        let filename=tempname()
-        echomsg filename
-        execute ":write " . filename
-    else
-        let filename=bufname("%")
-    endif
+    let tempfile=tempname()
+    echomsg tempfile
+    call writefile(getbufline(bufnr('%'), 1, '$'), tempfile)
 
-    let out=system(g:godef_command . " -f=" . shellescape(filename) . " " . shellescape(a:arg))
+    let out=system(g:godef_command . " -f=" . shellescape(tempfile) . " " . shellescape(a:arg))
+
+    call delete(tempfile)
 
     if out =~ 'godef: '
         let out=substitute(out, '\n$', '', '')
         echom out
-    elseif g:godef_same_file_in_same_window == 1 && (out) =~ expand('%:t')
+    elseif g:godef_same_file_in_same_window == 1 && (out) =~ "^".tempfile
+        let x=stridx(out, ":")
+        let out=expand("%:t").strpart(out, x, len(out)-x)
         lexpr out
     else
         if g:godef_split == 1
