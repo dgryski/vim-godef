@@ -41,7 +41,7 @@ function! Godef(arg)
         echom out
     elseif g:godef_same_file_in_same_window == 1 && (out) =~ "^".tempfile
         let x=stridx(out, ":")
-        let out=expand("%:t").strpart(out, x, len(out)-x)
+        let out=expand("%").strpart(out, x, len(out)-x)
         lexpr out
     else
         if g:godef_split == 1
