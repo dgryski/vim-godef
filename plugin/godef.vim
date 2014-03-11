@@ -36,6 +36,9 @@ function! Godef(arg)
 
     call delete(tempfile)
 
+    let old_errorformat = &errorformat
+    let &errorformat = "%f:%l:%c"
+
     if out =~ 'godef: '
         let out=substitute(out, '\n$', '', '')
         echom out
@@ -51,6 +54,7 @@ function! Godef(arg)
         endif
         lexpr out
     end
+    let &errorformat = old_errorformat
 endfunction
 
 autocmd FileType go nnoremap <buffer> gd :call GodefUnderCursor()<cr>
