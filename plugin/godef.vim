@@ -35,7 +35,7 @@ function! Godef(arg)
     if out =~ 'godef: '
         let out=substitute(out, '\n$', '', '')
         echom out
-    elseif g:godef_same_file_in_same_window == 1 && (out) =~ "^".tempfile
+    elseif g:godef_same_file_in_same_window == 1 && (out) =~ "^".expand("%:p")
         let x=stridx(out, ":")
         let out=expand("%").strpart(out, x, len(out)-x)
         lexpr out
