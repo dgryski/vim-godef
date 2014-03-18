@@ -27,14 +27,7 @@ function! GodefUnderCursor()
 endfunction
 
 function! Godef(arg)
-
-    let tempfile=tempname()
-    echomsg tempfile
-    call writefile(getbufline(bufnr('%'), 1, '$'), tempfile)
-
-    let out=system(g:godef_command . " -f=" . shellescape(tempfile) . " " . shellescape(a:arg))
-
-    call delete(tempfile)
+    let out=system(g:godef_command . " -f=" . expand("%:p") . " -i " . shellescape(a:arg), join(getbufline(bufnr('%'), 1, '$'), "\n"))
 
     let old_errorformat = &errorformat
     let &errorformat = "%f:%l:%c"
