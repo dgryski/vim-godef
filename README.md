@@ -22,7 +22,11 @@ will reuse the current window, and
 
     g:godef_split=2
 
-will open the definition in a new tab.
+will open the definition in a new tab, and
+
+    g:godef_split=3
+
+will use a vertical split instead of the default horizontal split.
 
 If you want jumps to the same file to move your current cursor instead of splitting, use
 

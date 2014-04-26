@@ -44,6 +44,8 @@ function! Godef(arg)
             split
         elseif g:godef_split == 2
             tabnew
+        elseif g:godef_split == 3
+            vsplit
         endif
         lexpr out
     end
