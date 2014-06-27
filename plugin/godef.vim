@@ -12,6 +12,9 @@ if !exists("g:godef_same_file_in_same_window")
     let g:godef_same_file_in_same_window=0
 endif
 
+if !exists("g:godef_system_function")
+    let g:godef_system_function="system"
+endif
 
 function! GodefUnderCursor()
     let pos = getpos(".")[1:2]
@@ -27,7 +30,7 @@ function! GodefUnderCursor()
 endfunction
 
 function! Godef(arg)
-    let out=system(g:godef_command . " -f=" . expand("%:p") . " -i " . shellescape(a:arg), join(getbufline(bufnr('%'), 1, '$'), "\n"))
+    let out=call(g:godef_system_function, [g:godef_command . " -f=" . expand("%:p") . " -i " . shellescape(a:arg), join(getbufline(bufnr('%'), 1, '$'), "\n")])
 
     let old_errorformat = &errorformat
     let &errorformat = "%f:%l:%c"
