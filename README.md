@@ -8,9 +8,13 @@ the definition of a symbol.  It can be installed with
 
 To install the vim-godef plugin, clone this vim-godef repository and (from it) copy `plugin/godef.vim` to `~/.vim/plugin` .
 
-Or, if you're using pathogen, 
+Or, if you're using pathogen, on Linux:
 
     git clone https://github.com/dgryski/vim-godef ~/.vim/bundle/vim-godef
+
+or on Windows:
+
+    git clone https://github.com/dgryski/vim-godef %USERPROFILE%\vimfiles\bundle\vim-godef
 
 This modules overrides the `gd` (go to local definition) command to open a new
 window at the definition of the symbol under the cursor.  Setting
