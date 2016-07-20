@@ -4,20 +4,25 @@ This plugin adds godef support to vim.
 The `godef` tool from Roger Peppe parses Go code and returns the location of
 the definition of a symbol.  It can be installed with
 
-    go get -v code.google.com/p/rog-go/exp/cmd/godef
-    go install -v code.google.com/p/rog-go/exp/cmd/godef
+    go get -v github.com/rogpeppe/godef
+    go install -v github.com/rogpeppe/godef
 
-To install this plugin, clone this repository and (from it) copy `plugin/godef.vim` to `~/.vim/plugin` .
+To install the vim-godef plugin, clone this vim-godef repository and (from it) copy `plugin/godef.vim` to `~/.vim/plugin` .
 
-Or, if you're using pathogen, 
+Or, if you're using pathogen, on Linux:
 
     git clone https://github.com/dgryski/vim-godef ~/.vim/bundle/vim-godef
+
+or on Windows:
+
+    git clone https://github.com/dgryski/vim-godef %USERPROFILE%\vimfiles\bundle\vim-godef
 
 This modules overrides the `gd` (go to local definition) command to open a new
 window at the definition of the symbol under the cursor.  Setting
 
     g:godef_split=0
 
+(that is, entering the command `let g:godef_split=0` or inserting it into your ~/.vimrc)
 will reuse the current window, and
 
     g:godef_split=2
