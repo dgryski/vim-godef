@@ -1,4 +1,4 @@
-" needs https://code.google.com/p/rog-go/source/browse/exp/cmd/godef/godef.go
+" needs https://github.com/rogpeppe/rog-go/tree/master/exp/cmd/godef/godef.go
 
 if !exists("g:godef_command")
     let g:godef_command = "godef"
