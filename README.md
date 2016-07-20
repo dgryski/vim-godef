@@ -1,4 +1,3 @@
-
 This plugin adds godef support to vim.
 
 The `godef` tool from Roger Peppe parses Go code and returns the location of
@@ -7,7 +6,7 @@ the definition of a symbol.  It can be installed with
     go get -v github.com/rogpeppe/godef
     go install -v github.com/rogpeppe/godef
 
-To install this plugin, clone this repository and (from it) copy `plugin/godef.vim` to `~/.vim/plugin` .
+To install the vim-godef plugin, clone this vim-godef repository and (from it) copy `plugin/godef.vim` to `~/.vim/plugin` .
 
 Or, if you're using pathogen, 
 
