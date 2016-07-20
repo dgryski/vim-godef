@@ -17,7 +17,8 @@ window at the definition of the symbol under the cursor.  Setting
 
     g:godef_split=0
 
-will reuse the current window, and
+ (that is, entering the command `let g:godef_split=0` or inserting it into your ~/.vimrc)
+ will reuse the current window, and
 
     g:godef_split=2
 
