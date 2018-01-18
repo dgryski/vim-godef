@@ -1,3 +1,5 @@
+## You probably want to be using https://github.com/fatih/vim-go instead
+
 
 This plugin adds godef support to vim.
 
